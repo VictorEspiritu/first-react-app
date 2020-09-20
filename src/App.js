@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class MyComponent extends Component {
+
+   state = {
+      show: true
+   }
+
+   showGreet = ()=>{
+      this.setState({show: !this.state.show})
+   }
+
+   render(){
+      if (this.state.show) {
+         return(
+            <div className="sayHello">
+               <h4>{this.props.greet}</h4> 
+               <p>{this.props.description}</p>
+               <button onClick={this.showGreet}>Hide</button>
+            </div>
+         )
+      }else {
+         return(
+            <div className="sayHello">
+               <p>No hay saludo...<br/></p>
+               <button onClick={this.showGreet}>Show</button>
+            </div>
+         ) 
+      }
+   }
 }
+
+class App extends Component {
+   render() {
+      
+     return (
+        <div>
+            <h3>First Component</h3>
+            <MyComponent greet="Hello World" description="Saludo en Ingles"/>
+            <MyComponent greet="Hola a Todos" description="Saludo en Espa;ol"/>
+            <MyComponent greet="Knnnnn" description="Saludo en knnn"/>
+        </div>
+     )
+   }
+}
+
+//const App = () => <div><h3>First Component</h3></div>
+ 
+/*function App() {
+
+  return ( //Vamos a defini<]
+     <div>
+         <h3>First Component</h3>
+     </div>
+  )
+}*/
 
 export default App;
