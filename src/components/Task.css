@@ -1,0 +1,46 @@
+.task {
+   position: relative;
+   margin: 10px;
+   overflow: auto;
+   padding: 10px 15px;
+   box-shadow: 3px 3px 8px #C0C0C0;
+}
+
+.task h3{
+   border-bottom: 1px solid #CAC8C8;
+   color:#1A7AEE;
+   margin:0;
+   padding-bottom:5px;
+   width:90%;
+   text-transform:uppercase;
+   font-size:14px;
+}
+
+.task button{
+   position: absolute;
+   right:10px;
+   border:0;
+   background-color:#D12F86;
+   color: #F5F5F5;
+   border-radius:20px;
+   padding: 10px 15px;
+   bottom:30px;
+}
+
+.task .task-dsc{
+   position: relative;
+   overflow: auto;
+   padding: 10px 15px;
+   height:15px;
+}
+.task .task-dsc input{
+   position:  absolute;
+   left:0; 
+   margin:0;
+} 
+.task .task-dsc p{
+   position: absolute;
+   margin: 0;
+   left: 25px;
+   color: #808080;
+}

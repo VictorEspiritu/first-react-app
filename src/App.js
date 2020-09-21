@@ -1,60 +1,60 @@
 import React, {Component} from 'react';
 import './App.css';
 
+import tasks from './tasks.json'
+import Tasks from './components/Tasks'
+import TaskForm from './components/TaskForm'
 
-class MyComponent extends Component {
+class App extends Component{
 
    state = {
-      show: true
+      tasks: tasks
    }
 
-   showGreet = ()=>{
-      this.setState({show: !this.state.show})
+   addTask = (title, description) => {
+      const newTask = {
+         title: title,
+         description: description,
+         id: this.state.tasks.length
+      };
+
+      this.setState({
+         tasks: [...this.state.tasks, newTask]
+      });
+   }
+
+   deleteTask = (id) => {
+      const dTask = this.state.tasks.filter( (t) => t.id !== id );
+      this.setState({
+         tasks: dTask
+      });
+   }
+   
+   checkDone = (id) => {
+      const cTask = this.state.tasks.map((t) => {
+         if (t.id === id) {
+            t.done = !t.done;
+         }
+
+         return t;
+      });
+
+      this.setState({
+         tasks: cTask
+      });
    }
 
    render(){
-      if (this.state.show) {
-         return(
-            <div className="sayHello">
-               <h4>{this.props.greet}</h4> 
-               <p>{this.props.description}</p>
-               <button onClick={this.showGreet}>Hide</button>
-            </div>
-         )
-      }else {
-         return(
-            <div className="sayHello">
-               <p>No hay saludo...<br/></p>
-               <button onClick={this.showGreet}>Show</button>
-            </div>
-         ) 
-      }
+      return(
+         <div>
+            <TaskForm addTask={this.addTask} />
+            <Tasks 
+               tasks={this.state.tasks} 
+               deleteTask={this.deleteTask}
+               checkDone={this.checkDone}/> 
+         </div>
+      )
    }
 }
-
-class App extends Component {
-   render() {
-      
-     return (
-        <div>
-            <h3>First Component</h3>
-            <MyComponent greet="Hello World" description="Saludo en Ingles"/>
-            <MyComponent greet="Hola a Todos" description="Saludo en Espa;ol"/>
-            <MyComponent greet="Knnnnn" description="Saludo en knnn"/>
-        </div>
-     )
-   }
-}
-
-//const App = () => <div><h3>First Component</h3></div>
- 
-/*function App() {
-
-  return ( //Vamos a defini<]
-     <div>
-         <h3>First Component</h3>
-     </div>
-  )
-}*/
 
 export default App;
